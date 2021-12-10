@@ -13,6 +13,7 @@ var routesRol = require('./routes/rol');
 var routesUsu_rol = require('./routes/usu_rol');
 var routesUsuario = require('./routes/usuario');
 var routesVivero_orquidea = require('./routes/vivero_orquidea');
+var routesImage = require('./routes/image');
 
 var application = express();
 
@@ -29,6 +30,8 @@ application.use('/api', routesRol);
 application.use('/api', routesUsu_rol);
 application.use('/api', routesUsuario);
 application.use('/api', routesVivero_orquidea);
+application.use('/api', routesImage);
+
 
 application.get('/health-check', function(req, resp){
     resp.status(200).send({mensaje:"OK"});

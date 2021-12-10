@@ -18,6 +18,8 @@ function createVivero(req, resp){
     newVivero.region = parametros.region;
     newVivero.direccion = parametros.direccion;
     newVivero.telefono = parametros.telefono;
+    newVivero.latitud = parametros.latitud;
+    newVivero.longitud = parametros.longitud;
     newVivero.estado = parametros.estado;
     
 
@@ -47,7 +49,9 @@ function updateVivero(req, resp){
         region: parametros.region,
         direccion: parametros.direccion,
         telefono: parametros.telefono,
-        estado: parametros.estado,
+        latitud: parametros.latitud,
+        longitud: parametros.longitud,
+        estado: parametros.estado
                         
     }, function(err, viveroActualizada){
         if(err){

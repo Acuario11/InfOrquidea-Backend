@@ -1,6 +1,7 @@
 'use strict'
 
 var Usu_rol = require('../models/usu_rol');
+var Rol = require('../models/rol');
 
 function createUsu_rol(req, resp){
 
@@ -92,11 +93,33 @@ function findAllUsu_rol(req, resp){
 
 }
 
+//Encontrar rol por Usuario ID
+function findRolByUsuId(req, resp){
+
+    Usu_rol.find({ usuarioId: req.params.usuarioId }, (err, rol_usuEncontrado) => {
+        if(err){
+            resp.status(500).send({message: "No se pudo consultar a usu_rol."});
+        }
+        else{
+            Rol.findById(rol_usuEncontrado[0].rolId, (err, rolEncontrado) => {
+                if(err){
+                    resp.status(500).send({message: "No se pudo consultar a Rol."});
+                }
+                else{
+                    resp.status(200).send({rol: rolEncontrado});
+                }
+            });
+        }
+    });
+
+}
+
 module.exports = {
     createUsu_rol,
     updateUsu_rol,
     deleteUsu_rol,
     findByIdUsu_rol,
-    findAllUsu_rol
+    findAllUsu_rol,
+    findRolByUsuId
 };
 

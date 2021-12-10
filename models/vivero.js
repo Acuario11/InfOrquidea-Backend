@@ -17,6 +17,8 @@ var ViveroSchema = Schema({
     region: String,
     direccion: String,
     telefono: String,
+    latitud: String,
+    longitud: String,
     estado: String
 });
 

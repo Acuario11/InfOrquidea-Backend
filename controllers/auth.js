@@ -16,7 +16,7 @@ function registrarUsuario(req, resp){
     nuevoUsuario.usuario = parametros.usuario;
     nuevoUsuario.personaId = parametros.personaId;
 
-    bcrypt.hash(parametros.password, null, null, function(err, hash){
+    bcrypt.hash(parametros.clave, null, null, function(err, hash){
         nuevoUsuario.clave = hash;
     });
 
@@ -46,7 +46,7 @@ function validarPasswordDeUsuario(req, resp){
         else{
             bcrypt.compare(passwordIngresado, usuarioEncontrado.clave, (err, check)=>{
                 if(check){
-                    resp.status(200).send({message: "Usuario autenticado", token : token.obtenerTokenDeUsuario(usuarioEncontrado)});
+                    resp.status(200).send({message: "Usuario autenticado", usuarioId: usuarioEncontrado._id, token : token.obtenerTokenDeUsuario(usuarioEncontrado)});
                 }
                 else{
                     resp.status(403).send({message: "No se pudo autenticar el usuario"});

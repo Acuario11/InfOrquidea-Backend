@@ -1,5 +1,7 @@
 'use strict'
 
+var bcrypt = require('bcrypt-nodejs');
+
 var Usuario = require('../models/usuario');
 
 function createUsuario(req, resp){
@@ -10,12 +12,14 @@ function createUsuario(req, resp){
 
     //Parte1-Parametros según modelo
     newUsuario.usuario = parametros.usuario;
-    newUsuario.clave = parametros.clave;
+
+    bcrypt.hash(parametros.clave, null, null, function(err, hash){
+        newUsuario.clave = hash;
+    });
+
     newUsuario.personaId = parametros.personaId;
     newUsuario.estado = parametros.estado;
         
-    
-
     newUsuario.save(
         (err, usuarioCreada) => {
             if(err){

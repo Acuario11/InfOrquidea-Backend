@@ -11,10 +11,10 @@ var application = express.Router();
 
 application.get('/controlador', token.validarTokenDeUsuario , authcontroller.pruebaController);
 
-application.post('/usuario/create', authcontroller.registrarUsuario);
+application.post('/auth/create', authcontroller.registrarUsuario);
 
-application.post('/usuario/login', authcontroller.validarPasswordDeUsuario);
+application.post('/auth/login', authcontroller.validarPasswordDeUsuario);
 
-application.get('/usuario/all', authcontroller.findAllUsuarios);
+application.get('/auth/all', authcontroller.findAllUsuarios);
 
 module.exports = application;

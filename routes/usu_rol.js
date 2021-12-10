@@ -15,4 +15,6 @@ application.get('/usu_rol/all', usu_rolcontroller.findAllUsu_rol);
 
 application.get('/usu_rol/:id', usu_rolcontroller.findByIdUsu_rol);
 
+application.get('/usu_rol/usu/:usuarioId', usu_rolcontroller.findRolByUsuId);
+
 module.exports = application;
